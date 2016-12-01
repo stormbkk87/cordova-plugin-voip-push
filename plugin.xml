@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="cordova-plugin-voip-push"
+    version="0.9.0">
+
+    <engines>
+        <engine name="cordova" version=">=3.6.3" />
+    </engines>
+
+    <name>VoipPush</name>
+    <keywords>voip,callkit</keywords>
+    <repo>https://github.com/stormbkk87/cordova-plugin-voip-push.git</repo>
+    <issue>https://github.com/stormbkk87/cordova-plugin-voip-push/issues</issue>
+
+    <description>Cordova iOS CallKit plugin</description>
+
+    <js-module src="www/VoipPush.js" name="VoipPush">
+        <clobbers target="cordova.plugins.voippush" />
+    </js-module>
+
+    <author>Rich Storm</author>
+
+    <license>MIT</license>
+
+    <platform name="ios">
+        <config-file target="*-Info.plist" parent="UIBackgroundModes">
+            <array>
+                <string>audio</string>
+                <string>remote-notification</string>
+                <string>fetch</string>
+                <string>voip</string>
+            </array>
+        </config-file>
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="VoipPush">
+                <param name="ios-package" value="VoipPush" />
+            </feature>
+        </config-file>
+        <source-file src="src/ios/VoipPushPlugin.swift" />
+
+        <framework src="PushKit.framework" />
+    </platform>
+
+</plugin>
